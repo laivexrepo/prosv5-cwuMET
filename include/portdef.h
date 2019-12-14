@@ -1,7 +1,7 @@
 #ifndef PORT_DEF_H_
 #define PORT_DEF_H_
 
-// PORT defintion file for the CWU MET CLass clawbot, devices plugged in
+// PORT definition file for the CWU MET CLass clawbot, devices plugged in
 // to the V5 brain should have corresponding port names and portnumbers
 // represented here.  For example a left side drive motor plugged into port
 // 10 should be represented here as shown below.

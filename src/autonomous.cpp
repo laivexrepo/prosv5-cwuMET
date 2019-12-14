@@ -114,5 +114,4 @@ void runSkillAuto(){
     armAngle = liftMoveForAngle(15, 50 );         // return to ZERO point
     if(DEBUG) { std::cout << "Arm angle after move: " << armAngle << " \n";}
   }
-
 }

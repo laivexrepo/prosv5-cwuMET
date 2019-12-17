@@ -11,7 +11,7 @@
 #define RIGHT_MOTOR_PORT  1
 
 // Lift motors
-#define LIFT_MOTOR_PORT 8
+#define LIFT_MOTOR_PORT 9
 
 // Claw (intake motors)
 #define CLAW_MOTOR_PORT 3

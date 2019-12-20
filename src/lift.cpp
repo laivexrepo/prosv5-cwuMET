@@ -69,6 +69,7 @@ float liftMoveForAngle(float angle, int speed ){
         pros::delay(2);
       }
     }
+    liftMotor.move_velocity(0);
   }
   if(DEBUG) { std::cout << "Final angle: " << liftMotor.get_position() << " True angle: " << (liftMotor.get_position() / liftGearRatio) << " \n"; }
   return(liftMotor.get_position());

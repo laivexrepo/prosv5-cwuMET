@@ -21,7 +21,7 @@ void initialize() {
 
 	pros::Motor liftMotor (LIFT_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
-  pros::Motor clawMotor(CLAW_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+  pros::Motor clawMotor(CLAW_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
   // Set the brake mode for the lift motor - hold position when stopped
 	liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

@@ -3,6 +3,7 @@
 #include "globals.h"
 #include "drivebase.h"
 #include "lift.h"
+#include "claw.h"
 
 int autonomousTime = 15;    // 15sec 45sec 60sec autonomous run
 
@@ -83,8 +84,13 @@ void runExtendedAuto(){
   // Run the extended 45sec autonomous code
   // Lets run different code based on RED or BLUE side, the global variable
   // fieldSide lets us know this 1 == RED 2 == blue
+  float clawAngle = 0;
+
   if(fieldSide == 1) {
     if(DEBUG) { std::cout << "RED side selected for 45sec autonomous \n "; }
+    clawAngle = clawOpenForAngle(70,35);
+    pros::delay(2000);
+    clawAngle = clawOpenForAngle(0,35);
   }
 
   if(fieldSide == 2) {

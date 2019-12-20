@@ -3,7 +3,7 @@
 #include "portdef.h"
 #include "claw.h"
 
-float maxAngleClawOpen = 90;        // Maximum angle for the claw to move to
+float maxAngleClawOpen = 85;        // Maximum angle for the claw to move to
                                     // when it is at it's most open position
 
 int clawGearRatio = 3;              // gear ratio between motor and claw arm gear
@@ -67,12 +67,13 @@ float clawOpenForAngle(float angle, int speed ){
       float minAngle = angle - 5;
       float maxAngle = angle + 5;
       if(DEBUG) { std::cout << "angle: " << angle << " minAngle: " << minAngle << " maxAngle: " << maxAngle << "\n";}
-      liftMotor.move_absolute(angle, speed);
+      clawMotor.move_absolute(angle, speed);
       while (!((clawMotor.get_position() < maxAngle) && (clawMotor.get_position() > minAngle))) {
         pros::delay(2);
       }
+      clawMotor.move_velocity(0);     // make sure we stop
     }
   }
-  if(DEBUG) { std::cout << "Final angle: " << clawMotor.get_position() << " True angle: " << (liftMotor.get_position() / clawGearRatio) << " \n"; }
-  return(liftMotor.get_position());
+  if(DEBUG) { std::cout << "Final angle: " << clawMotor.get_position() << " True angle: " << (clawMotor.get_position() / clawGearRatio) << " \n"; }
+  return(clawMotor.get_position());
 }

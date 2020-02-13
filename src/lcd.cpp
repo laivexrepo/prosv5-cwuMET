@@ -32,6 +32,7 @@ void on_left_button() {
 
 // Center chooser button call back
 void on_center_button(){
+    if(DEBUG) { std::cout << "Setting ZERO point for lift and claw \n";}
     pros::lcd::print(2, "Setting ZERO point for lift and claw!");
     liftSetLowPreset();
     clawSetLowPreset();

@@ -66,6 +66,7 @@ float liftMoveForAngle(float angle, int speed ){
       if(DEBUG) { std::cout << "angle: " << angle << " minAngle: " << minAngle << " maxAngle: " << maxAngle << "\n";}
       liftMotor.move_absolute(angle, speed);
       while (!((liftMotor.get_position() < maxAngle) && (liftMotor.get_position() > minAngle))) {
+        //if(DEBUG) { std::cout << "Current Position: " << liftMotor.get_position() << "\n";}
         pros::delay(2);
       }
     }

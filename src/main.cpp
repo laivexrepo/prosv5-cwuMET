@@ -6,6 +6,7 @@
 #include "claw.h"
 #include "autonomous.h"
 #include "lcd.h"
+#include "slider.h"
 
 
 /**
@@ -20,14 +21,18 @@ void initialize() {
 	pros::Motor right_wheel (RIGHT_MOTOR_PORT, MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 	pros::Motor liftMotor (LIFT_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+	pros::Motor liftMotor2 (LIFT_MOTOR_PORT_2, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
   pros::Motor clawMotor(CLAW_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+
+  pros::Motor sliderMotor(SLIDER_MOTOR_PORT, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
   // Set the brake mode for the lift motor - hold position when stopped
 	liftMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 	clawMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
+	sliderMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 
   // Initialize the LCD display
@@ -161,6 +166,10 @@ void opcontrol() {
 	  // activated in glabls.c globals.h initialize() as well as in the clawControl
 	  // function in claw.cpp
 	  clawControl();
+
+    // Control the slider on the extended arm
+		sliderControl(100,100);								// forward and backward sepped in RPM
+
 
  	  pros::delay(20);
   }

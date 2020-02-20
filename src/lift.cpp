@@ -3,6 +3,10 @@
 #include "portdef.h"
 #include "lift.h"
 
+// NOTE: 02-19-2020 -- code in this version MET-1.4 branch is changed to have
+// two lift motors one on eac hside of the tower.  liftMotor2 is turning ccw as
+// see for liftMotor
+
 float maxAngleMovement = 90;       // Maximum angle lift can move to
 
 int liftGearRatio = 7;              // gear ratio between motor and lift arm
@@ -11,13 +15,16 @@ int liftGearRatio = 7;              // gear ratio between motor and lift arm
 
 void liftControl(int speedUp, int speedDown){
   if (master.get_digital(DIGITAL_R1)) {
-     liftMotor.move_velocity(speedUp);
+    liftMotor.move_velocity(speedUp);
+    liftMotor2.move_velocity(speedUp);
    }
    else if (master.get_digital(DIGITAL_R2)) {
      liftMotor.move_velocity(-speedDown);
+     liftMotor2.move_velocity(-speedDown);
    }
    else {
      liftMotor.move_velocity(0);
+     liftMotor2.move_velocity(0);
    }
 }
 
@@ -34,6 +41,8 @@ void liftSetLowPreset() {
   // main.cpp
 
   liftMotor.tare_position();
+  liftMotor2.tare_position();
+
   if(DEBUG) { std::cout << "Lift Encoder: " << liftMotor.get_position() << " \n"; }
 
   pros::lcd::print(2, "ZERO point for lift set");
@@ -65,12 +74,15 @@ float liftMoveForAngle(float angle, int speed ){
       float maxAngle = angle + 5;
       if(DEBUG) { std::cout << "angle: " << angle << " minAngle: " << minAngle << " maxAngle: " << maxAngle << "\n";}
       liftMotor.move_absolute(angle, speed);
+      liftMotor2.move_absolute(angle, speed);
+
       while (!((liftMotor.get_position() < maxAngle) && (liftMotor.get_position() > minAngle))) {
         //if(DEBUG) { std::cout << "Current Position: " << liftMotor.get_position() << "\n";}
         pros::delay(2);
       }
     }
     liftMotor.move_velocity(0);
+    liftMotor2.move_velocity(0);
   }
   if(DEBUG) { std::cout << "Final angle: " << liftMotor.get_position() << " True angle: " << (liftMotor.get_position() / liftGearRatio) << " \n"; }
   return(liftMotor.get_position());

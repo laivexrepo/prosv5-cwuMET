@@ -8,8 +8,11 @@ extern pros::Motor left_wheel;
 extern pros::Motor right_wheel;
 
 extern pros::Motor liftMotor;       // Motor operating lift/arm
+extern pros::Motor liftMotor2;       // Motor operating lift/arm
 
 extern pros::Motor clawMotor;       // Motor reserved for claw/intake
+
+extern pros::Motor sliderMotor;     // Motor reserved for extended arm slider
 
 extern pros::Controller master;
 extern pros::Controller partner;    // Partner controller likely not used

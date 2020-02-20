@@ -12,9 +12,13 @@
 
 // Lift motors
 #define LIFT_MOTOR_PORT 9
+#define LIFT_MOTOR_PORT_2 4
 
 // Claw (intake motors)
 #define CLAW_MOTOR_PORT 3
+
+// Lsider (arm slide motors)
+#define SLIDER_MOTOR_PORT 5
 
 // ----------- Radio and Controllers ---------------
 #define VEX_RADIO 6

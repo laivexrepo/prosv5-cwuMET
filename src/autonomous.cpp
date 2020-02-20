@@ -4,6 +4,7 @@
 #include "drivebase.h"
 #include "lift.h"
 #include "claw.h"
+#include "slider.h"
 
 int autonomousTime = 15;    // 15sec 45sec 60sec autonomous run
 
@@ -78,7 +79,16 @@ void runStandardAuto() {
     driveForDistance(50, 100);  // 50cm forward  at 100RPM
     swingTurn(-90, 50);					// 90 degree swing turn at 50RPM counter clockwise
   }
+
+  // Enable below code for the robot wit hthe slider and seconf lift motor
+  float armAngle = 0;
+  armAngle = liftMoveForAngle(45, 50 );        // move up 45degree from Zero point
+  if(DEBUG) { std::cout << "Arm angle after move: " << armAngle << " \n";}
+
+  // test slider
+  sliderMoveForRotation(360, 50);                // degrees / speed in RPM
 }
+
 
 void runExtendedAuto(){
   // Run the extended 45sec autonomous code

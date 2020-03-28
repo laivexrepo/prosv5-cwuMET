@@ -28,8 +28,6 @@ void initialize() {
 
 	clawMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-
-
   // Initialize the LCD display
 	pros::delay(50);						// we need to give the LCD threat time to starts
 															// otherwise the screen won't draw properly
